@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include 
 
 from updates.views import (
                         json_example_view ,
@@ -25,13 +26,12 @@ from updates.views import (
                     )
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('json/example/' , json_example_view , name = 'home'),
-    path('json/cbv/' , JsonCBV.as_view() , name = 'JsonCBV'),
-    path('json/cbv2/' , JsonCBV2.as_view() , name = 'JsonCBV2'),
-    path('json/serialized/list/' , SerializedListView.as_view() , name = 'SerializedListView'),
-    path('json/serialized/detail/' , SerializedDetailView.as_view() , name = 'SerializedDetailView'),
-
-
+    path('api/updates/', include('updates.api.urls') ),
+    # path('json/example/' , json_example_view , name = 'home'),
+    # path('json/cbv/' , JsonCBV.as_view() , name = 'JsonCBV'),
+    # path('json/cbv2/' , JsonCBV2.as_view() , name = 'JsonCBV2'),
+    # path('json/serialized/list/' , SerializedListView.as_view() , name = 'SerializedListView'),
+    # path('json/serialized/detail/' , SerializedDetailView.as_view() , name = 'SerializedDetailView'),
 
 
 ]
